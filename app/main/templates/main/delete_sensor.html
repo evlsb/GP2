@@ -1,0 +1,27 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    Удаление датчика
+{% endblock %}
+
+{% block content %}
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-6 mx-auto d-block card">
+
+            <p class="mt-2">Удаление датчика</p>
+
+            <form method="post">
+                {% csrf_token %}
+                <span>{{ error }}</span>
+                <button type="submit" class="btn btn-success mb-2">Удалить</button>
+
+            </form>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+

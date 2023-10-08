@@ -1,0 +1,40 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+
+    <form method="post" class="d-flex">
+        {% csrf_token %}
+        <select name="name_cat" class="form-select form-control mt-2">
+            <option>Выбрать все</option>
+            {% for i in cat %}
+                <option>{{ i.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-success mb-2 mt-2 ms-2">Фильтр</button>
+    </form>
+
+    {% if sensor %}
+        {% for i in sensor %}
+            <div class="card" style="width: 18rem; float: left; margin-right: 10px; margin-top: 10px;">
+                <div class="card-header">
+                    <h5>{{ i.position }}</h5>
+                </div>
+                <div class="card-body">
+                <p class="card-text">{{ i.description }}</p>
+                  <p class="card-text">20 {{ i.engunits }}</p>
+                <a href="{% url 'sensor-detail' i.id %}" class="btn btn-primary">Подробнее</a>
+                <a href="{% url 'sensor-update' i.id %}" class="btn btn-warning">Изменить</a>
+              </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Добавьте датчик</p>
+    {% endif %}
+
+{% endblock %}
+
+

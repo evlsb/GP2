@@ -1,0 +1,27 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    Обновить единицы измерения
+{% endblock %}
+
+{% block content %}
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-6 mx-auto d-block card">
+
+            <p class="mt-2">Обновите поля</p>
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.name }}
+                <span>{{ error }}</span>
+                <button type="submit" class="btn btn-success mb-2 mt-2">Изменить</button>
+
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+

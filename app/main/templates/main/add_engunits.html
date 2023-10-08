@@ -1,0 +1,43 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    Добавить единицы измерения
+{% endblock %}
+
+{% block content %}
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-6 mx-auto d-block card">
+
+            <p class="mt-2">Заполните поля</p>
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.name }}
+                <span>{{ error }}</span>
+                <button type="submit" class="btn btn-success mb-2 mt-2">Добавить</button>
+
+            </form>
+        </div>
+    </div>
+
+
+    {% if engunits %}
+        <div class="list-group col-6 mx-auto mt-3">
+            {% for i in engunits %}
+                <div class="d-flex mb-2">
+                    <a href="#" class="list-group-item list-group-item-action me-2">{{ i.name }}</a>
+                    <a href="{% url 'eng-update' i.id %}" type="button" class="btn btn-warning me-2">Изменить</a>
+                    <a href="{% url 'eng-delete' i.id %}" type="button" class="btn btn-danger">Удалить</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Добавьте единицы измерения</p>
+    {% endif %}
+
+
+
+{% endblock %}
+
+
